@@ -19,3 +19,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
     openFile: () => ipcRenderer.invoke('open-file'),
     handleCounter: (callback) => ipcRenderer.on('update-counter', callback)
 });
+
+contextBridge.exposeInMainWorld('db', {
+    addItem: (item) => ipcRenderer.invoke('db:add-item', item),
+    getItems: () => ipcRenderer.invoke('db:get-items'),
+});
